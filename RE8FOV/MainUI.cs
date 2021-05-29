@@ -25,6 +25,9 @@ namespace RE8FOV
         {
             // Initialize WinForm components.
             InitializeComponent();
+
+            System.Diagnostics.FileVersionInfo assemblyFileVersion = System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            this.Text += string.Format(" v{0}.{1}.{2}.{3}", assemblyFileVersion.ProductMajorPart, assemblyFileVersion.ProductMinorPart, assemblyFileVersion.ProductBuildPart, assemblyFileVersion.ProductPrivatePart);
         }
 
         private void MainUI_Load(object sender, EventArgs e)
