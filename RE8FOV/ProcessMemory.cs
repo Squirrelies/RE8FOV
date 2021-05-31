@@ -28,6 +28,8 @@ namespace RE8FOV
             }
 
             // Checksum check to determine which base pointer to use.
+            // TODO: Transition to use app_GlobalService's list of static pointers.
+            // app_GlobalService: "re8.exe"+A1B2AA0
             if (checksum.SequenceEqual(GameHashes.re8WW_20210506_1))
                 this.basePointer += 0x0A1A74F0L;
             else if (checksum.SequenceEqual(GameHashes.re8ceroD_20210506_1))
