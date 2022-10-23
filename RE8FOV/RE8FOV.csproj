@@ -8,12 +8,12 @@
     <Platforms>x64</Platforms>
     <Company>Travis J. Gutjahr</Company>
     <Authors>Travis J. Gutjahr</Authors>
-    <Copyright>Copyright © 2021 Travis J. Gutjahr</Copyright>
+    <Copyright>Copyright © 2022 Travis J. Gutjahr</Copyright>
     <Product>Resident Evil 8: Village Field of View Changing Tool</Product>
     <Description>A tool for changing the FOV in Resident Evil 8: Village.</Description>
-    <Version>1.0.4.0</Version>
-    <FileVersion>1.0.4.0</FileVersion>
-    <AssemblyVersion>1.0.4.0</AssemblyVersion>
+    <Version>1.0.5.0</Version>
+    <FileVersion>1.0.5.0</FileVersion>
+    <AssemblyVersion>1.0.5.0</AssemblyVersion>
     <DebugType>embedded</DebugType>
   </PropertyGroup>
 
@@ -26,11 +26,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Text.Json" Version="5.0.2" />
+    <PackageReference Include="System.Text.Json" Version="6.0.6" />
   </ItemGroup>
 
-  <Target Name="PostPublish" AfterTargets="Publish" Condition="'$(TJGutjahr)' == 'true'">
-    <Exec Command="&quot;C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64\signtool.exe&quot; sign /tr &quot;http://timestamp.digicert.com&quot; /td SHA1 /sha1 &quot;33982512a318ef75eeb82a9db6d637c041a18974&quot; /fd SHA1 &quot;$(PublishDir)\$(AssemblyName).exe&quot;&#xD;&#xA;&quot;C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64\signtool.exe&quot; sign /tr &quot;http://timestamp.digicert.com&quot; /td SHA256 /sha1 &quot;33982512a318ef75eeb82a9db6d637c041a18974&quot; /fd SHA256 /as &quot;$(PublishDir)\$(AssemblyName).exe&quot;&#xD;&#xA;&quot;C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64\signtool.exe&quot; sign /tr &quot;http://timestamp.digicert.com&quot; /td SHA512 /sha1 &quot;33982512a318ef75eeb82a9db6d637c041a18974&quot; /fd SHA512 /as &quot;$(PublishDir)\$(AssemblyName).exe&quot;&#xD;&#xA;" />
-  </Target>
+	<Target Name="PostPublish" AfterTargets="Publish" Condition="'$(TJGutjahr)' == 'true'">
+		<Exec Command="&quot;C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\signtool.exe&quot; sign /tr &quot;http://timestamp.digicert.com&quot; /td SHA1 /sha1 &quot;33982512a318ef75eeb82a9db6d637c041a18974&quot; /fd SHA1 &quot;$(PublishDir)\$(AssemblyName).exe&quot;&#xD;&#xA;&quot;C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\signtool.exe&quot; sign /tr &quot;http://timestamp.digicert.com&quot; /td SHA256 /sha1 &quot;33982512a318ef75eeb82a9db6d637c041a18974&quot; /fd SHA256 /as &quot;$(PublishDir)\$(AssemblyName).exe&quot;&#xD;&#xA;&quot;C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\signtool.exe&quot; sign /tr &quot;http://timestamp.digicert.com&quot; /td SHA512 /sha1 &quot;33982512a318ef75eeb82a9db6d637c041a18974&quot; /fd SHA512 /as &quot;$(PublishDir)\$(AssemblyName).exe&quot;&#xD;&#xA;" />
+	</Target>
 
 </Project>

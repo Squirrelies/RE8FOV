@@ -12,7 +12,7 @@ namespace RE8FOV
     {
         private IntPtr processHandle;
         private byte* basePointer; // Done as a byte* instead of long* because + 1 on the pointer will advance it by 8 (size of a long).
-        private int[] fovOffsets = new int[] { 0x1F8, 0x68, 0x78, 0x128, 0x20, 0x20, 0x50 };
+        private int[] fovOffsets;// = new int[] { 0x1F8, 0x68, 0x78, 0x128, 0x20, 0x20, 0x50 };
 
         public ProcessMemory(string processName)
         {
@@ -30,22 +30,31 @@ namespace RE8FOV
             // Checksum check to determine which base pointer to use.
             // TODO: Transition to use app_GlobalService's list of static pointers.
             // app_GlobalService: "re8.exe"+A1B2AA0
-            if (checksum.SequenceEqual(GameHashes.re8WW_20211217_1))
-                this.basePointer += 0x0A060C88L + 0x10F0;
-            else if (checksum.SequenceEqual(GameHashes.re8WW_20210824_4) || checksum.SequenceEqual(GameHashes.re8WW_20210810_1) || checksum.SequenceEqual(GameHashes.re8WW_20211012_5))
-                this.basePointer += 0x0A060C88L;
-            else if (checksum.SequenceEqual(GameHashes.re8WW_20210719_1))
-                this.basePointer += 0x0A05ECB8L;
-            else if (checksum.SequenceEqual(GameHashes.re8WW_20210506_1))
-                this.basePointer += 0x0A1A74F0L;
-            else if (checksum.SequenceEqual(GameHashes.re8ceroD_20210506_1))
-                this.basePointer += 0x0A1A74F0L + 0x2000L;
-            else if (checksum.SequenceEqual(GameHashes.re8ceroZ_20210508_1))
-                this.basePointer += 0x0A1A74F0L + 0x1000L;
-            else if (checksum.SequenceEqual(GameHashes.re8promo01_20210426_1))
-                this.basePointer += 0x0A1A74F0L + 0x1030L;
+            if (checksum.SequenceEqual(GameHashes.re8WW_20221014_1))
+            {
+                this.fovOffsets = new int[] { 0x1F8, 0x68, 0x78, 0x130, 0x20, 0x20, 0x50 };
+                this.basePointer += 0x0C9B76E8;
+            }
             else
-                throw new FileFormatException("re8.exe SHA256 checksum not recognized! Possible new version or modified game file!");
+            {
+                this.fovOffsets = new int[] { 0x1F8, 0x68, 0x78, 0x128, 0x20, 0x20, 0x50 };
+                if (checksum.SequenceEqual(GameHashes.re8WW_20211217_1))
+                    this.basePointer += 0x0A060C88L + 0x10F0;
+                else if (checksum.SequenceEqual(GameHashes.re8WW_20210824_4) || checksum.SequenceEqual(GameHashes.re8WW_20210810_1) || checksum.SequenceEqual(GameHashes.re8WW_20211012_5))
+                    this.basePointer += 0x0A060C88L;
+                else if (checksum.SequenceEqual(GameHashes.re8WW_20210719_1))
+                    this.basePointer += 0x0A05ECB8L;
+                else if (checksum.SequenceEqual(GameHashes.re8WW_20210506_1))
+                    this.basePointer += 0x0A1A74F0L;
+                else if (checksum.SequenceEqual(GameHashes.re8ceroD_20210506_1))
+                    this.basePointer += 0x0A1A74F0L + 0x2000L;
+                else if (checksum.SequenceEqual(GameHashes.re8ceroZ_20210508_1))
+                    this.basePointer += 0x0A1A74F0L + 0x1000L;
+                else if (checksum.SequenceEqual(GameHashes.re8promo01_20210426_1))
+                    this.basePointer += 0x0A1A74F0L + 0x1030L;
+                else
+                    throw new FileFormatException($"re8.exe SHA256 checksum not recognized! Possible new version or modified game file! Checksum: {ToHexString(checksum)}");
+            }
         }
 
         private unsafe bool GetPlayerCameraParameterAddress(out long address)
@@ -85,5 +94,7 @@ namespace RE8FOV
             else
                 return false;
         }
+
+        private static string ToHexString(byte[] value) => value.Select((byte a) => a.ToString("X2")).Aggregate((string prev, string curr) => prev + " " + curr);
     }
 }
