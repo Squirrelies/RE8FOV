@@ -11,9 +11,9 @@
     <Copyright>Copyright © 2022 Travis J. Gutjahr</Copyright>
     <Product>Resident Evil 8: Village Field of View Changing Tool</Product>
     <Description>A tool for changing the FOV in Resident Evil 8: Village.</Description>
-    <Version>1.0.6.0</Version>
-    <FileVersion>1.0.6.0</FileVersion>
-    <AssemblyVersion>1.0.6.0</AssemblyVersion>
+    <Version>1.0.7.0</Version>
+    <FileVersion>1.0.7.0</FileVersion>
+    <AssemblyVersion>1.0.7.0</AssemblyVersion>
     <DebugType>embedded</DebugType>
   </PropertyGroup>
 
