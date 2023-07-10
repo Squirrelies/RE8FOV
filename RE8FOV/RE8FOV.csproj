@@ -7,13 +7,13 @@
     <LangVersion>latest</LangVersion>
     <Platforms>x64</Platforms>
     <Company>Travis J. Gutjahr</Company>
-    <Authors>Travis J. Gutjahr</Authors>
-    <Copyright>Copyright © 2022 Travis J. Gutjahr</Copyright>
+    <Authors>$(Company)</Authors>
+    <Copyright>Copyright © 2023 $(Company)</Copyright>
     <Product>Resident Evil 8: Village Field of View Changing Tool</Product>
     <Description>A tool for changing the FOV in Resident Evil 8: Village.</Description>
-    <Version>1.0.7.0</Version>
-    <FileVersion>1.0.7.0</FileVersion>
-    <AssemblyVersion>1.0.7.0</AssemblyVersion>
+    <Version>1.0.8.0</Version>
+    <FileVersion>1.0.8.0</FileVersion>
+    <AssemblyVersion>1.0.8.0</AssemblyVersion>
     <DebugType>embedded</DebugType>
   </PropertyGroup>
 
@@ -26,7 +26,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Text.Json" Version="6.0.6" />
+    <PackageReference Include="System.Text.Json" Version="7.0.3" />
   </ItemGroup>
 
 	<Target Name="PostPublish" AfterTargets="Publish" Condition="'$(TJGutjahr)' == 'true'">
